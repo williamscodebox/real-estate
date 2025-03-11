@@ -1,5 +1,13 @@
 import Link from "next/link";
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebook,
+  faInstagram,
+  faTwitter,
+  faLinkedin,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 
 function FooterSection() {
   return (
@@ -8,7 +16,7 @@ function FooterSection() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4">
             <Link href="/" className="text-xl font-bold" scroll={false}>
-              RENTIFUL
+              RENTFIND
             </Link>
           </div>
           <nav className="mb-4">
@@ -61,7 +69,7 @@ function FooterSection() {
           </div>
         </div>
         <div className="mt-8 text-center text-sm text-gray-500 flex justify-center space-x-4">
-          <span>© RENTiful. All rights reserved.</span>
+          <span>© RENTFIND. All rights reserved.</span>
           <Link href="/privacy">Privacy Policy</Link>
           <Link href="/terms">Terms of Service</Link>
           <Link href="/cookies">Cookie Policy</Link>
