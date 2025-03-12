@@ -52,6 +52,7 @@ export const api = createApi({
               cognitoInfo: { ...user },
               userInfo: userDetailsResponse.data as Tenant | Manager,
               userRole,
+              // session -- this could add session info if wanted
             },
           };
         } catch (error: any) {
