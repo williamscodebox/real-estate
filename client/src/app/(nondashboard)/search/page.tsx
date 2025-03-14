@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/state/redux";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 import FiltersBar from "./FiltersBar";
+import FiltersFull from "./FiltersFull";
 
 function SearchPage() {
   const searchParams = useSearchParams();
@@ -29,7 +30,7 @@ function SearchPage() {
               : "w-0 opacity-0 invisible"
           }`}
         >
-          {/*<FiltersFull />*/}
+          <FiltersFull />
         </div>
         {/*<Map />*/}
         <div className="basis-4/12 overflow-y-auto">{/*<Listings />*/}</div>
