@@ -29,7 +29,7 @@ export const initialState: InitialStateTypes = {
     availableFrom: "any",
     priceRange: [null, null],
     squareFeet: [null, null],
-    coordinates: [34.0522, -118.2437],
+    coordinates: [-118.2437, 34.0522],
   },
   viewmode: "grid",
 };
