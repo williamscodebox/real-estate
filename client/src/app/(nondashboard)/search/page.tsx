@@ -4,6 +4,7 @@ import { NAVBAR_HEIGHT } from "@/lib/constants";
 import { useAppDispatch, useAppSelector } from "@/state/redux";
 import { useSearchParams } from "next/navigation";
 import React from "react";
+import FiltersBar from "./FiltersBar";
 
 function SearchPage() {
   const searchParams = useSearchParams();
@@ -19,7 +20,7 @@ function SearchPage() {
         height: `calc(100vh - ${NAVBAR_HEIGHT}px)`,
       }}
     >
-      {/*<FiltersBar />*/}
+      <FiltersBar />
       <div className="flex justify-between flex-1 overflow-hidden gap-3 mb-5">
         <div
           className={`h-full overflow-auto transition-all duration-300 ease-in-out ${
