@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { use, useEffect, useRef } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useAppSelector } from "@/state/redux";
@@ -36,7 +36,7 @@ function Map() {
     });
 
     const resizeMap = () => {
-      if (map) setTimeout(() => map.resize(), 300);
+      if (map) setTimeout(() => map.resize(), 4000);
     };
     resizeMap();
 
