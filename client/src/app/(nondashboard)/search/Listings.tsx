@@ -1,15 +1,16 @@
 import {
-  // useAddFavoritePropertyMutation,
+  useAddFavoritePropertyMutation,
   useGetAuthUserQuery,
   useGetPropertiesQuery,
-  // useGetTenantQuery,
-  //useRemoveFavoritePropertyMutation,
+  useGetTenantQuery,
+  useRemoveFavoritePropertyMutation,
 } from "@/state/api";
 import { useAppSelector } from "@/state/redux";
 import { Property } from "@/types/prismaTypes";
-import Card from "@/components/Card";
+
 import React from "react";
 import CardCompact from "@/components/CardCompact";
+import Card from "@/components/Card";
 
 function Listings() {
   const { data: authUser } = useGetAuthUserQuery();
@@ -21,7 +22,7 @@ function Listings() {
   );
   const [addFavorite] = useAddFavoritePropertyMutation();
   const [removeFavorite] = useRemoveFavoritePropertyMutation();
-  const viewMode = useAppSelector((state) => state.global.viewMode);
+  const viewMode = useAppSelector((state) => state.global.viewmode);
   const filters = useAppSelector((state) => state.global.filters);
 
   const {
