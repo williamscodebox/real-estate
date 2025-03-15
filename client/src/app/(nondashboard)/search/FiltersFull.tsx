@@ -13,10 +13,10 @@ import { AmenityIcons, PropertyTypeIcons } from "@/lib/constants";
 import { cleanParams, cn, formatEnumString } from "@/lib/utils";
 import { FiltersState, initialState, setFilters } from "@/state";
 import { useAppSelector } from "@/state/redux";
-import { debounce } from "lodash";
+import { debounce, filter } from "lodash";
 import { Search } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 function FiltersFull() {
@@ -28,6 +28,7 @@ function FiltersFull() {
   const isFiltersFullOpen = useAppSelector(
     (state) => state.global.isFiltersFullOpen
   );
+  const [searchField, setSearchField] = useState(filters.location);
 
   const updateURL = debounce((newFilters: FiltersState) => {
     const cleanFilters = cleanParams(newFilters);
@@ -42,6 +43,10 @@ function FiltersFull() {
 
     router.push(`${pathname}?${updatedSearchParams.toString()}`);
   });
+
+  useEffect(() => {
+    setSearchField(filters.location);
+  }, [filters.coordinates]);
 
   const handleSubmit = () => {
     dispatch(setFilters(localFilters));
@@ -65,9 +70,13 @@ function FiltersFull() {
 
   const handleLocationSearch = async () => {
     try {
+      setLocalFilters((prev) => ({
+        ...prev,
+        location: searchField,
+      }));
       const response = await fetch(
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
-          localFilters.location
+          searchField
         )}.json?access_token=${
           process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN
         }&fuzzyMatch=true`
@@ -79,6 +88,7 @@ function FiltersFull() {
           ...prev,
           coordinates: [lng, lat],
         }));
+        handleSubmit();
       }
     } catch (err) {
       console.error("Error search location:", err);
@@ -96,13 +106,8 @@ function FiltersFull() {
           <div className="flex items-center">
             <Input
               placeholder="Enter location"
-              value={filters.location}
-              onChange={(e) =>
-                setLocalFilters((prev) => ({
-                  ...prev,
-                  location: e.target.value,
-                }))
-              }
+              value={searchField}
+              onChange={(e) => setSearchField(e.target.value)}
               className="rounded-l-xl rounded-r-none border-r-0"
             />
             <Button

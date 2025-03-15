@@ -6,7 +6,7 @@ import {
 } from "@/state";
 import { useAppSelector } from "@/state/redux";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { debounce } from "lodash";
 import { cleanParams, cn, formatPriceValue } from "@/lib/utils";
@@ -31,7 +31,7 @@ function FiltersBar() {
     (state) => state.global.isFiltersFullOpen
   );
   const viewmode = useAppSelector((state) => state.global.viewmode);
-  const [searchInput, setSearchInput] = useState("filters.location");
+  const [searchInput, setSearchInput] = useState(filters.location);
 
   const updateURL = debounce((newFilters: FiltersState) => {
     const cleanFilters = cleanParams(newFilters);
@@ -46,6 +46,10 @@ function FiltersBar() {
 
     router.push(`${pathname}?${updatedSearchParams.toString()}`);
   });
+
+  useEffect(() => {
+    setSearchInput(filters.location);
+  }, [filters.coordinates]);
 
   const handleFilterChange = (
     key: string,
