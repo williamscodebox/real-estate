@@ -118,6 +118,8 @@ export const api = createApi({
       },
     }),
 
+    // tenant related endpoints
+
     updateTenantSettings: build.mutation<
       Tenant,
       { cognitoId: string } & Partial<Tenant>
@@ -135,6 +137,8 @@ export const api = createApi({
         });
       },*/
     }),
+
+    // manager related endpoints
 
     updateManagerSettings: build.mutation<
       Manager,
