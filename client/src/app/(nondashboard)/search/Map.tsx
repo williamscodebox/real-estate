@@ -36,7 +36,7 @@ function Map() {
     });
 
     const resizeMap = () => {
-      if (map) setTimeout(() => map.resize(), 2500);
+      if (map) setTimeout(() => map.resize(), 100);
     };
     resizeMap();
 

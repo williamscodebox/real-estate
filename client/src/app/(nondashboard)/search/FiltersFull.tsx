@@ -11,9 +11,14 @@ import {
 import { Slider } from "@/components/ui/slider";
 import { AmenityIcons, PropertyTypeIcons } from "@/lib/constants";
 import { cleanParams, cn, formatEnumString } from "@/lib/utils";
-import { FiltersState, initialState, setFilters } from "@/state";
+import {
+  FiltersState,
+  initialState,
+  setFilters,
+  toggleFiltersFullOpen,
+} from "@/state";
 import { useAppSelector } from "@/state/redux";
-import { debounce, filter } from "lodash";
+import { debounce, filter, set } from "lodash";
 import { Search } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -51,12 +56,14 @@ function FiltersFull() {
   const handleSubmit = () => {
     dispatch(setFilters(localFilters));
     updateURL(localFilters);
+    dispatch(toggleFiltersFullOpen());
   };
 
   const handleReset = () => {
     setLocalFilters(initialState.filters);
     dispatch(setFilters(initialState.filters));
     updateURL(initialState.filters);
+    dispatch(toggleFiltersFullOpen());
   };
 
   const handleAmenityChange = (amenity: AmenityEnum) => {
@@ -84,12 +91,14 @@ function FiltersFull() {
       const data = await response.json();
       if (data.features && data.features.length > 0) {
         const [lng, lat] = data.features[0].center;
-        setLocalFilters((prev) => ({
-          ...prev,
-          coordinates: [lng, lat],
-        }));
-        handleSubmit();
+        dispatch(
+          setFilters({
+            location: searchField,
+            coordinates: [lng, lat],
+          })
+        );
       }
+      dispatch(toggleFiltersFullOpen());
     } catch (err) {
       console.error("Error search location:", err);
     }
