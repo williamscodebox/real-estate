@@ -3,7 +3,7 @@
 import { useGetAuthUserQuery } from "@/state/api";
 import { useParams } from "next/navigation";
 import React, { useState } from "react";
-import ImagePreviews from "./imagePreviews";
+import ImagePreviews from "./ImagePreviews";
 
 function SingleListing() {
   const { id } = useParams();
