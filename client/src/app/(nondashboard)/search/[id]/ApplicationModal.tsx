@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { Form } from "@/components/ui/form";
 import { ApplicationFormData, applicationSchema } from "@/lib/schemas";
-import { useGetAuthUserQuery } from "@/state/api";
+import { useCreateApplicationMutation, useGetAuthUserQuery } from "@/state/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -18,7 +18,7 @@ function ApplicationModal({
   onClose,
   propertyId,
 }: ApplicationModalProps) {
-  //const [createApplication] = useCreateApplicationMutation();
+  const [createApplication] = useCreateApplicationMutation();
   const { data: authUser } = useGetAuthUserQuery();
 
   const form = useForm<ApplicationFormData>({
@@ -39,14 +39,14 @@ function ApplicationModal({
       return;
     }
 
-    /*} await createApplication({
+    await createApplication({
       ...data,
       applicationDate: new Date().toISOString(),
       status: "Pending",
       propertyId: propertyId,
       tenantCognitoId: authUser.cognitoInfo.userId,
     });
-    onClose();*/
+    onClose();
   };
 
   return (
