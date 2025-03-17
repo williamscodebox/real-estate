@@ -7,6 +7,8 @@ import ImagePreviews from "./ImagePreviews";
 import PropertyOverview from "./PropertyOverview";
 import PropertyDetails from "./PropertyDetails";
 import PropertyLocation from "./PropertyLocation";
+import ContactWidget from "./ContactWidget";
+import ApplicationModal from "./ApplicationModal";
 
 function SingleListing() {
   const { id } = useParams();
@@ -27,17 +29,16 @@ function SingleListing() {
         </div>
 
         <div className="order-1 md:order-2">
-          {/*<ContactWidget onOpenModal={() => setIsModalOpen(true)} />*/}
+          <ContactWidget onOpenModal={() => setIsModalOpen(true)} />
         </div>
       </div>{" "}
-      {/*
       {authUser && (
         <ApplicationModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           propertyId={propertyId}
         />
-      )}*/}
+      )}
     </div>
   );
 }
