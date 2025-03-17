@@ -297,6 +297,7 @@ export const api = createApi({
     }),
 
     // application related endpoints
+
     getApplications: build.query<
       Application[],
       { userId?: string; userType?: string }
