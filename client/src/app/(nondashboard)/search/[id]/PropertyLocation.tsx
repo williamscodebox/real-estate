@@ -19,7 +19,7 @@ function PropertyLocation({ propertyId }: PropertyDetailsProps) {
 
     const map = new mapboxgl.Map({
       container: mapContainerRef.current!,
-      style: "mapbox://styles/majesticglue/cm6u301pq008b01sl7yk1cnvb",
+      style: "mapbox://styles/willproject/cm89ecp3l00m301s5161z3svh",
       center: [
         property.location.coordinates.longitude,
         property.location.coordinates.latitude,
