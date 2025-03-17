@@ -7,14 +7,14 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-//import { setFilters } from "@/state";
+import { setFilters } from "@/state";
 
 function HeroSection() {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
 
-  /*const handleLocationSearch = async () => {
+  const handleLocationSearch = async () => {
     try {
       const trimmedQuery = searchQuery.trim();
       if (!trimmedQuery) return;
@@ -32,7 +32,7 @@ function HeroSection() {
         dispatch(
           setFilters({
             location: trimmedQuery,
-            coordinates: [lat, lng],
+            coordinates: [lng, lat],
           })
         );
         const params = new URLSearchParams({
@@ -45,7 +45,7 @@ function HeroSection() {
     } catch (error) {
       console.error("error search location:", error);
     }
-  };*/
+  };
 
   return (
     <div className="relative h-screen">
@@ -81,7 +81,7 @@ function HeroSection() {
               className="w-full max-w-lg rounded-none rounded-l-xl border-none bg-white h-12"
             />
             <Button
-              //onClick={handleLocationSearch}
+              onClick={handleLocationSearch}
               className="bg-secondary-500 text-white rounded-none rounded-r-xl border-none hover:bg-secondary-600 h-12"
             >
               Search
