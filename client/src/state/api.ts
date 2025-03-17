@@ -350,4 +350,5 @@ export const {
   useGetLeasesQuery,
   useGetPaymentsQuery,
   useGetManagerPropertiesQuery,
+  useGetPropertyLeasesQuery,
 } = api;
