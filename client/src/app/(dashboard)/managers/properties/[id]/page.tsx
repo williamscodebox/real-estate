@@ -108,10 +108,10 @@ function PropertyTenants() {
                         />
                         <div>
                           <div className="font-semibold">
-                            {/*{lease.tenant.name}*/}
+                            {lease.tenant.name}
                           </div>
                           <div className="text-sm text-gray-500">
-                            {/*{lease.tenant.email}*/}
+                            {lease.tenant.email}
                           </div>
                         </div>
                       </div>
@@ -137,7 +137,7 @@ function PropertyTenants() {
                         {getCurrentMonthPaymentStatus(lease.id)}
                       </span>
                     </TableCell>
-                    <TableCell>{lease.id}</TableCell>
+                    <TableCell>{lease.tenant.phoneNumber}</TableCell>
                     <TableCell>
                       <button
                         className={`border border-gray-300 text-gray-700 py-2 px-4 rounded-md flex 

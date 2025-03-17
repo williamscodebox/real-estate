@@ -300,7 +300,17 @@ export const getPropertyLeases = async (
     const { id } = req.params;
     const leases = await prisma.lease.findMany({
       where: { propertyId: Number(id) },
+      include: {
+        property: {
+          include: {
+            location: true,
+            manager: true,
+          },
+        },
+        tenant: true,
+      },
     });
+
     res.json(leases);
   } catch (error: any) {
     res
