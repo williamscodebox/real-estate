@@ -163,12 +163,12 @@ export const api = createApi({
         body: updatedTenant,
       }),
       invalidatesTags: (result) => [{ type: "Tenants", id: result?.id }],
-      /*async onQueryStarted(_, { queryFulfilled }) {
+      async onQueryStarted(_, { queryFulfilled }) {
         await withToast(queryFulfilled, {
           success: "Settings updated successfully!",
           error: "Failed to update settings.",
         });
-      },*/
+      },
     }),
 
     addFavoriteProperty: build.mutation<
@@ -239,12 +239,12 @@ export const api = createApi({
         body: updatedManager,
       }),
       invalidatesTags: (result) => [{ type: "Managers", id: result?.id }],
-      /*async onQueryStarted(_, { queryFulfilled }) {
-      await withToast(queryFulfilled, {
-        success: "Settings updated successfully!",
-        error: "Failed to update settings.",
-      });
-    }, */
+      async onQueryStarted(_, { queryFulfilled }) {
+        await withToast(queryFulfilled, {
+          success: "Settings updated successfully!",
+          error: "Failed to update settings.",
+        });
+      },
     }),
 
     createProperty: build.mutation<Property, FormData>({
